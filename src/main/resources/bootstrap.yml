@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: tci-pse-comprobante
+  cloud:
+    config:
+      uri: ${SERVER_CONFIG_URL:''}
+      fail-fast: ${SERVER_CONFIG_FAIL_FAST:true}
+      enabled: true

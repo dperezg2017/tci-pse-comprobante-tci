@@ -1,0 +1,30 @@
+version: '3.3'
+services:
+
+  configserver:
+    image: "tci-pse-config-server"
+    ports:
+    - 8888:8888
+    volumes:
+    - ./config-server.jks:/config-server.jks
+    environment:
+      GIT_URI: "https://deyviz@bitbucket.org/tci-innovacion/tci-pse-config-properties.git"
+      GIT_USER: "deyvis.perez@tci.net.pe"
+      GIT_PWD: "2472215Yo"
+      KEYSTORE_PWD: "YOU_KEYSTORE_PASSWORD"
+      KEYSTORE_ALIAS: "YOU_CONFIG_SERVER_KEY"
+      KEYSTORE_SECRET: "YOU_KEYSTORE_PASSWORD"
+
+  tci-pse-comprobante:
+    image: "tci-pse-comprobante"
+    build:
+      context: .
+      dockerfile: ./src/main/docker/Dockerfile
+    ports:
+    - 8085:8085
+    environment:
+      SERVER_CONFIG_ENABLED: "true"
+      SERVER_CONFIG_URL: "http://configserver:8888"
+      SERVER_CONFIG_FAIL_FAST: "true"
+    depends_on:
+    - configserver

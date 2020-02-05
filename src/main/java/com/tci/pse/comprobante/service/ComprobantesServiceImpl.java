@@ -28,6 +28,8 @@ import org.springframework.stereotype.Service;
 
 import org.springframework.util.concurrent.ListenableFuture;
 
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,6 +43,8 @@ public class ComprobantesServiceImpl implements ComprobantesService {
     private final StorageProperties properties;
 
     private Storage storage;
+
+    private Util utilitario;
 
     public ComprobantesServiceImpl( PubSubComprobanteDeclareGateway pubSubTemplate, StorageProperties properties) {
         this.pubSubTemplate = pubSubTemplate;
@@ -56,14 +60,11 @@ public class ComprobantesServiceImpl implements ComprobantesService {
     }
 
     @Override
-    public String enviarStorage(String json) {
+    public String enviarStorage(ComprobanteStorageRequest comprobanteStorageRequest) {
         try{
             final Gson gson = new Gson();
 
-            ComprobanteStorageRequest comprobanteStorageRequest = gson.fromJson(json, ComprobanteStorageRequest.class);
-
-            String originalName =
-                    comprobanteStorageRequest.getIdTransaccion().toString()
+            String originalName =String.valueOf(comprobanteStorageRequest.getIdTransaccion())
                             .concat(Util.GUION)
                             .concat(comprobanteStorageRequest.getNombreDocumento());
 
@@ -71,10 +72,11 @@ public class ComprobantesServiceImpl implements ComprobantesService {
             List<Acl> acls = new ArrayList<Acl>();
             acls.add(Acl.of(Acl.User.ofAllUsers(), Acl.Role.READER));
 
-            byte[] jsonByte = Base64.decodeBase64(properties.getCredentials().getEncodedKey());
+           // byte[] jsonByte = Base64.decodeBase64(properties.getCredentials().getEncodedKey());
+            byte[] jsonByte = Base64.decodeBase64(new String(properties.getCredentials().getEncodedKey().getBytes(),StandardCharsets.UTF_8));
+
             String decodeJsonByte = new String(jsonByte);
             JsonCredentialStorage jsonCredentialStorage = gson.fromJson(decodeJsonByte, JsonCredentialStorage.class);
-            jsonCredentialStorage.getClient_email();
 
 
             storage = StorageOptions
@@ -94,7 +96,7 @@ public class ComprobantesServiceImpl implements ComprobantesService {
             Blob blob =
                     storage.create(
                             BlobInfo
-                                    .newBuilder(properties.getCredentials().getBucket(), Util.PACKAGE_STORAGE[0].concat(Util.SLASH).concat(originalName))
+                                    .newBuilder(properties.getCredentials().getBucket(), utilitario.PACKAGE_XML.concat(Util.SLASH).concat(originalName))
                                     .setAcl(acls)
                                     .build(),
                             comprobanteStorageRequest.getXmlZip());
@@ -105,12 +107,12 @@ public class ComprobantesServiceImpl implements ComprobantesService {
 
 //            System.out.println("1) Test de config server: "+properties.getCredentials().getConfigServer());
 
-            LOGGER.info("config-server :",properties.getCredentials().getConfigServer());
+            LOGGER.info("config-server : {}",properties.getCredentials().getConfigServer());
             return gson.toJson(comprobanteStorageResponse);
 
         } catch (Exception e) {
-            LOGGER.info("config-server :",properties.getCredentials().getConfigServer());
-            LOGGER.error("ocurrio un error :",e);
+            LOGGER.info("config-server : {}",properties.getCredentials().getConfigServer());
+            LOGGER.error("ocurrio un error : {}",e);
             return e.getMessage();
         }
     }

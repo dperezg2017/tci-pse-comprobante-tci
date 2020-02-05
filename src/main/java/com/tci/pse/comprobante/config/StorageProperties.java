@@ -4,7 +4,7 @@ import org.springframework.validation.annotation.Validated;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
-@ConfigurationProperties("tci-pse-comprobante.features")
+@ConfigurationProperties("tci-pse-comprobante.features.storage")
 @Validated
 public class StorageProperties {
 

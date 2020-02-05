@@ -1,39 +1,23 @@
 package com.tci.pse.comprobante.controller.web.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import javax.validation.Valid;
+import org.springframework.format.annotation.NumberFormat;
+
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-
-
 
 
 public class ComprobanteStorageRequest {
 
-    @Valid
-    @JsonProperty(
-            required = true
-    )
-    @NotNull(
-            message = "El parametro 'idTransaccion' es invalido. El valor ingresado es nulo"
-    )
+
+    @NotNull(message ="No puede ser vacio")
+
     private Long idTransaccion;
 
-    @Valid
-    @JsonProperty(
-            required = true
-    )
-    @NotNull(
-            message = "El parametro 'nombreDocumento' es invalido. El valor ingresado es nulo"
-    )
+
+    @NotEmpty(message ="No puede ser vacio")
     private String nombreDocumento;
 
-    @Valid
-    @JsonProperty(
-            required = true
-    )
-    @NotNull(
-            message = "El parametro 'xmlZip' es invalido. El valor ingresado es nulo"
-    )
+    @NotEmpty(message ="No puede ser vacio")
     private byte[] xmlZip;
 
 
@@ -54,10 +38,10 @@ public class ComprobanteStorageRequest {
     }
 
     public byte[] getXmlZip() {
-        return xmlZip;
+        return xmlZip.clone();
     }
 
     public void setXmlZip(byte[] xmlZip) {
-        this.xmlZip = xmlZip;
+        this.xmlZip = xmlZip.clone();
     }
 }

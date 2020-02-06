@@ -16,4 +16,5 @@ public class GoogleCloudStorageProperties {
     public void setBucket(String bucket) {
         this.bucket = bucket;
     }
+
 }

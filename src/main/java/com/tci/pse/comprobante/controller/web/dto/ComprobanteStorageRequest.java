@@ -1,25 +1,18 @@
 package com.tci.pse.comprobante.controller.web.dto;
 
-import org.springframework.format.annotation.NumberFormat;
-
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
-
 public class ComprobanteStorageRequest {
 
-
-    @NotNull(message ="No puede ser vacio")
-
+    @NotNull(message = "No debe ser vacio")
     private Long idTransaccion;
 
-
-    @NotEmpty(message ="No puede ser vacio")
+    @NotEmpty(message = "No debe ser vacio")
     private String nombreDocumento;
 
-    @NotEmpty(message ="No puede ser vacio")
+    @NotEmpty(message = "No debe ser vacio")
     private byte[] xmlZip;
-
 
     public Long getIdTransaccion() {
         return idTransaccion;

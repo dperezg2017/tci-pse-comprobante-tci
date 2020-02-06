@@ -1,8 +1,9 @@
 package com.tci.pse.comprobante.config;
+
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.validation.annotation.Validated;
+
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 
 @ConfigurationProperties("tci-pse-comprobante.features.storage")
 @Validated
@@ -19,7 +20,6 @@ public class StorageProperties {
     }
 
     public static class CredentialProperties {
-
         @NotEmpty(message = "projectId no puede ser nulo")
         private String projectId;
 

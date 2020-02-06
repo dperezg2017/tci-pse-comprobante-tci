@@ -1,17 +1,40 @@
 package com.tci.pse.comprobante.controller.web.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.google.gson.annotations.SerializedName;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class JsonCredentialStorage {
 
+    @SerializedName("type")
     private String type;
-    private String project_id;
-    private String private_key_id;
-    private String private_key;
-    private String client_email;
-    private String client_id;
-    private String auth_uri;
-    private String token_uri;
-    private String auth_provider_x509_cert_url;
-    private String client_x509_cert_url;
+
+    @SerializedName("project_id")
+    private String projectId;
+
+    @SerializedName("private_key_id")
+    private String privateKeyId;
+
+    @SerializedName("private_key")
+    private String privateKey;
+
+    @SerializedName("client_email")
+    private String clientEmail;
+
+    @SerializedName("client_id")
+    private String clientId;
+
+    @SerializedName("auth_uri")
+    private String authUri;
+
+    @SerializedName("token_uri")
+    private String tokenUri;
+
+    @SerializedName("auth_provider_x509_cert_url")
+    private String authProviderX509CertUrl;
+
+    @SerializedName("client_x509_cert_url")
+    private String clientX509CertUrl;
 
     public String getType() {
         return type;
@@ -21,75 +44,75 @@ public class JsonCredentialStorage {
         this.type = type;
     }
 
-    public String getProject_id() {
-        return project_id;
+    public String getProjectId() {
+        return projectId;
     }
 
-    public void setProject_id(String project_id) {
-        this.project_id = project_id;
+    public void setProjectId(String projectId) {
+        this.projectId = projectId;
     }
 
-    public String getPrivate_key_id() {
-        return private_key_id;
+    public String getPrivateKeyId() {
+        return privateKeyId;
     }
 
-    public void setPrivate_key_id(String private_key_id) {
-        this.private_key_id = private_key_id;
+    public void setPrivateKeyId(String privateKeyId) {
+        this.privateKeyId = privateKeyId;
     }
 
-    public String getPrivate_key() {
-        return private_key;
+    public String getPrivateKey() {
+        return privateKey;
     }
 
-    public void setPrivate_key(String private_key) {
-        this.private_key = private_key;
+    public void setPrivateKey(String privateKey) {
+        this.privateKey = privateKey;
     }
 
-    public String getClient_email() {
-        return client_email;
+    public String getClientEmail() {
+        return clientEmail;
     }
 
-    public void setClient_email(String client_email) {
-        this.client_email = client_email;
+    public void setClientEmail(String clientEmail) {
+        this.clientEmail = clientEmail;
     }
 
-    public String getClient_id() {
-        return client_id;
+    public String getClientId() {
+        return clientId;
     }
 
-    public void setClient_id(String client_id) {
-        this.client_id = client_id;
+    public void setClientId(String clientId) {
+        this.clientId = clientId;
     }
 
-    public String getAuth_uri() {
-        return auth_uri;
+    public String getAuthUri() {
+        return authUri;
     }
 
-    public void setAuth_uri(String auth_uri) {
-        this.auth_uri = auth_uri;
+    public void setAuthUri(String authUri) {
+        this.authUri = authUri;
     }
 
-    public String getToken_uri() {
-        return token_uri;
+    public String getTokenUri() {
+        return tokenUri;
     }
 
-    public void setToken_uri(String token_uri) {
-        this.token_uri = token_uri;
+    public void setTokenUri(String tokenUri) {
+        this.tokenUri = tokenUri;
     }
 
-    public String getAuth_provider_x509_cert_url() {
-        return auth_provider_x509_cert_url;
+    public String getAuthProviderX509CertUrl() {
+        return authProviderX509CertUrl;
     }
 
-    public void setAuth_provider_x509_cert_url(String auth_provider_x509_cert_url) {
-        this.auth_provider_x509_cert_url = auth_provider_x509_cert_url;
+    public void setAuthProviderX509CertUrl(String authProviderX509CertUrl) {
+        this.authProviderX509CertUrl = authProviderX509CertUrl;
     }
 
-    public String getClient_x509_cert_url() {
-        return client_x509_cert_url;
+    public String getClientX509CertUrl() {
+        return clientX509CertUrl;
     }
 
-    public void setClient_x509_cert_url(String client_x509_cert_url) {
-        this.client_x509_cert_url = client_x509_cert_url;
+    public void setClientX509CertUrl(String clientX509CertUrl) {
+        this.clientX509CertUrl = clientX509CertUrl;
     }
 }

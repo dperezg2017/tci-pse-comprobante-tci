@@ -2,18 +2,27 @@ package com.tci.pse.comprobante.controller.web.dto;
 
 public class ComprobanteStorageResponse {
 
+    private String link;
 
-    private String cadenaRespuestaStorage;
-
-    public ComprobanteStorageResponse(String cadenaRespuestaStorage) {
-        this.cadenaRespuestaStorage = cadenaRespuestaStorage;
+    public ComprobanteStorageResponse(String link) {
+        this.link = link;
     }
 
-    public String getCadenaRespuestaStorage() {
-        return cadenaRespuestaStorage;
+    public ComprobanteStorageResponse() {
     }
 
-    public void setCadenaRespuestaStorage(String cadenaRespuestaStorage) {
-        this.cadenaRespuestaStorage = cadenaRespuestaStorage;
+    public String getLink() {
+        return link;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
+    }
+
+    @Override
+    public String toString() {
+        return "ComprobanteStorageResponse{" +
+                "link='" + link + '\'' +
+                '}';
     }
 }
